@@ -1,4 +1,4 @@
-## 1. Build a web application that allows users to upload and search for images. 
+## 1. Build a web app that allows users to upload and search for images. 
 
 The application should have the following features:
 
@@ -20,7 +20,7 @@ The application should have a clean and user-friendly interface.
 Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. 
 They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
 
-## 2. Build a web application that allows users to create and manage a to-do list. 
+## 2. Build a web app that allows users to create and manage a to-do list. 
 
 The application should have the following features:
 
@@ -44,7 +44,7 @@ Here are some additional requirements and constraints:
 Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. 
 They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
 
-## 3. Build a web application that allows users to create and manage a blog. 
+## 3. Build a web app that allows users to create and manage a blog. 
 
 The application should have the following features:
 
@@ -66,10 +66,12 @@ Here are some additional requirements and constraints:
 - The application should be secure and protect against common web application vulnerabilities, such as cross-site scripting (XSS) and SQL injection.
 - The application should have a clean and user-friendly interface.
 
-Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
+Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. 
+They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
 
-What will be our evaluation criteria?
+## What will be our evaluation criteria?
 
+```
 1. Functionality: Does the application meet all of the requirements outlined in the use case? Is the application bug-free and does it perform all functions smoothly?
 2. Code quality: Is the code well-organized and easy to understand? Are appropriate comments used to describe functions and classes? Is the code clean, free of redundancies, and well-structured?
 3. Best practices: Does the team use best practices when writing the code, such as adhering to Django conventions, following the DRY (Don't Repeat Yourself) principle, and using Git version control?
@@ -77,3 +79,4 @@ What will be our evaluation criteria?
 5. User interface (UI) and user experience (UX): Is the UI clean, professional, and easy to navigate? Does the application have a responsive design that adapts to different screen sizes? Are appropriate user feedback messages and error messages displayed throughout the application?
 6. Testing: Has the team performed appropriate testing to ensure the application functions as expected? Are tests automated and integrated into the development process?
 7. Deployment: Has the team successfully deployed the application to a web server, such as Heroku or AWS? Are there any issues related to deployment, such as performance or scalability?
+```
