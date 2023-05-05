@@ -20,7 +20,9 @@ The application should have a clean and user-friendly interface.
 Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. 
 They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
 
-## 2. Build a web application that allows users to create and manage a to-do list. The application should have the following features:
+## 2. Build a web application that allows users to create and manage a to-do list. 
+
+The application should have the following features:
 
 - User authentication: Users should be able to register, log in, and log out of the application.
 - To-do list creation: Users should be able to create a to-do list with a title and description.
@@ -42,7 +44,9 @@ Here are some additional requirements and constraints:
 Your team can use their knowledge of Python, Django, HTML, CSS, and JavaScript to implement this use case. 
 They will need to work together to design the database schema, create the models, views, and templates, and write the necessary scripts to deploy the application to a web server.
 
-## 3. Build a web application that allows users to create and manage a blog. The application should have the following features:
+## 3. Build a web application that allows users to create and manage a blog. 
+
+The application should have the following features:
 
 - User authentication: Users should be able to register, log in, and log out of the application.
 - Blog creation: Users should be able to create a blog with a title, description, and cover image.
