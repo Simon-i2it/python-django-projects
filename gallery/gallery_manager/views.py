@@ -1,26 +1,27 @@
 from django.shortcuts import render, redirect
 from .gallery_form import GalleryForm, Gallery
-from .category_form import CategoryForm,Category
+from .category_form import Category
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def gallery(request):
-    photos = Gallery.objects.all()
+    categoryname = request.GET.get('category')
+    title = request.GET.get('title')
+    photos = Gallery.objects.filter(user=request.user)
+    if categoryname != None:
+        photos = photos.filter(category=categoryname)
+    if title != None:
+        photos = photos.filter(title__iexact=title)
     categories = Category.objects.all()
     context = {'categories': categories, 'photos': photos}
-    return render(request, 'gallery.html', context)
+    return render(request, 'gallery_manager/gallery.html', context)
 
+@login_required(login_url='login')
+def view_photo(request, pk):
+    photo = Gallery.objects.get(id=pk)
+    return render(request, 'gallery_manager/view_photo.html', {'photo': photo})
 
-def add_category(request):
-    categories = Category.objects.all()
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('add_category')
-    else:
-        context = {'form': form, 'categories': categories}
-        form = CategoryForm()
-    return render(request, 'add_category.html', context)
-
+@login_required(login_url='login')
 def image_upload(request):
     categories = Category.objects.all()
     if request.method == 'POST':
@@ -52,16 +53,17 @@ def image_upload(request):
                 category=categoryname,
                 description=data['description'],
                 image=image,
+                user=request.user
             )
         
         form = GalleryForm()
         context = {'form': form, 'categories': categories}
         form = GalleryForm(request.POST, request.FILES)
-        return render(request, 'add_image.html', context)
+        return render(request, 'gallery_manager/add_photo.html', context)
         if form.is_valid():
             form.save()
             return redirect('image_upload')
     else:
         form = GalleryForm()
         context = {'form': form, 'categories': categories}    
-    return render(request, 'add_image.html', context)
+    return render(request, 'gallery_manager/add_photo.html', context)
