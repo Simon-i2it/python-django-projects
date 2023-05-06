@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('AddCategory',views.add_category,name='add_category'),    
+    path('ViewPhoto/<str:pk>/',views.view_photo,name='view_photo'),    
     path('imageupload',views.image_upload,name='image_upload'),
     path('gallery',views.gallery,name='gallery'),
 ]

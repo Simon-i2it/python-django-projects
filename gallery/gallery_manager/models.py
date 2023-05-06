@@ -12,9 +12,10 @@ class Category(models.Model):
     
 class Gallery(models.Model):
     title = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     category=models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/')
+    user = models.CharField(max_length=50)
 
     def __str__(self):
         return self.title  
