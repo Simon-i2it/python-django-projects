@@ -5,10 +5,6 @@
     Add Task
 {% endblock title %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static "task_list/css/tasks.css" %}">
-{% endblock css %}
-
 {% block body %}
     <form method="POST">
         {% csrf_token %}
