@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ToDo List
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "task_list/css/tasks.css" %}">
+{% endblock css %}
+
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="flex-center">
+            <div class="card" style="width: 35rem;">
+                <div class="card-header text-center">
+                    <b>Simon's Tasks</b>
+                </div>
+                <div class="card-body">
+                    <ol class="list-group list-group-numbered">
+                        {% for task in tasks %}
+                            {% include "task_list/includes/task.html" %}
+                        {% endfor %}
+                        <li class="list-group-item d-flex justify-content-center">
+                            <div class="btn-group" style="" role="group">
+                                <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'url-add-task' %}'">➕</button>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="card-footer">
+                    Logged in as Simon Alphonse
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock body %}
