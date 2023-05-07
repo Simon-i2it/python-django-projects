@@ -81,5 +81,5 @@ def delete_task(request: HttpRequest, pk) -> HttpResponse:
 
 @login_required(login_url="url-login")
 def delete_tasks(request: HttpRequest) -> HttpResponse:
-    Task.objects.all().delete()
+    Task.objects.get(user=request.user).delete()
     return redirect("url-tasks")
