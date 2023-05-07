@@ -1,5 +1,5 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.auth.decorators import login_required
@@ -80,6 +80,11 @@ def delete_task(request: HttpRequest, pk) -> HttpResponse:
 
 
 @login_required(login_url="url-login")
+def confirm_delete_tasks(request: HttpRequest) -> HttpResponse:
+    return render(request, "task_list/tasks_confirm_delete.html")
+
+
+@login_required(login_url="url-login")
 def delete_tasks(request: HttpRequest) -> HttpResponse:
-    Task.objects.get(user=request.user).delete()
+    Task.objects.filter(user=request.user).delete()
     return redirect("url-tasks")
