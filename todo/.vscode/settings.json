@@ -9,4 +9,8 @@
         "tree.indentGuidesStroke": "#fff700",
         "editorIndentGuide.activeBackground": "#ff00ff",
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none",
 }

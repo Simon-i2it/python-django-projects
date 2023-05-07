@@ -1,11 +1,10 @@
 from django.db import models
 from django.urls import reverse_lazy
-
-from account.models import Account
+from django.contrib.auth.models import User
 
 
 class Task(models.Model):
-    # account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=100, blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)

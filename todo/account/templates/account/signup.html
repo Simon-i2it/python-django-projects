@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="flex-center">
+            <div class="card" style="width: 30rem;">
+                <div class="card-header text-center">
+                    <b>SignUp</b>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input name="first_name" type="text" class="form-control" placeholder="First Name">
+                        <input name="last_name" type="text" class="form-control" placeholder="Last Name">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <input name="username" type="text" class="form-control" placeholder="Username">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <input name="email" type="text" class="form-control" placeholder="Email address">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <input name="password1" type="password" class="form-control" placeholder="Password">
+                        <input name="password2" type="password" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    
+                    <div class="input-group mb-3 d-flex justify-content-center">
+                        <button class="btn btn-success" type="submit" style="width: 10rem; margin-top: 1rem;">SignUp</button>
+                    </div>
+                </div>
+
+                <div class="card-footer text-center">
+                    Already have an account ?
+                    <a href="{% url "url-signin" %}">Login</a>
+                </div>
+            </div>
+        </div>      
+    </form>
+
+{% endblock body %}
