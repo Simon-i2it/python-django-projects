@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    SignUp
+{% endblock title %}
+
 {% block body %}
     <form method="post">
         {% csrf_token %}
@@ -11,21 +15,21 @@
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <input name="first_name" type="text" class="form-control" placeholder="First Name">
-                        <input name="last_name" type="text" class="form-control" placeholder="Last Name">
+                        <input required name="first_name" type="text" class="form-control" placeholder="First Name">
+                        <input required name="last_name" type="text" class="form-control" placeholder="Last Name">
                     </div>
                     
                     <div class="input-group mb-3">
-                        <input name="username" type="text" class="form-control" placeholder="Username">
+                        <input required name="username" type="text" class="form-control" placeholder="Username">
                     </div>
                     
                     <div class="input-group mb-3">
-                        <input name="email" type="text" class="form-control" placeholder="Email address">
+                        <input required name="email" type="text" class="form-control" placeholder="Email address">
                     </div>
                     
                     <div class="input-group mb-3">
-                        <input name="password1" type="password" class="form-control" placeholder="Password">
-                        <input name="password2" type="password" class="form-control" placeholder="Confirm Password">
+                        <input required name="password1" type="password" class="form-control" placeholder="Password">
+                        <input required name="password2" type="password" class="form-control" placeholder="Confirm Password">
                     </div>
                     
                     <div class="input-group mb-3 d-flex justify-content-center">
