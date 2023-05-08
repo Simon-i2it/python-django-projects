@@ -1,0 +1,9 @@
+{% if errors %}
+    <ul>
+        <div>
+            {% for error in errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </ul>
+{% endif %}
