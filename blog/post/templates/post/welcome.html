@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'blog/welcome.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/post.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/welcome.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/post.css' %}">
 {% endblock css %}
 
 {% block body %}
 
     <section id ="welcome">
         <header>
-            <img src="{% static 'blog/images/dp.jpg' %}" alt="Simon Alphonse - Author of the blog"/>
+            <img src="{% static 'post/images/dp.jpg' %}" alt="Simon Alphonse - Author of the blog"/>
             <h2>Simon Alphonse</h2>
         </header>
         <p>I'm a .NET and Python developer working at Ideas2It.</p>
@@ -24,7 +24,7 @@
         <h2>Latest Posts</h2>
         <ul>
             {% for post in posts %}
-                {% include "blog/includes/post-preview.html" %}
+                {% include "post/includes/post-preview.html" %}
             {% endfor %}
         </ul>
     </section>
