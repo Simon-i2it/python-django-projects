@@ -49,7 +49,7 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
         return reverse_lazy("url-tasks")
 
 
-@login_required(login_url="url-login")
+@login_required(login_url="url-signin")
 def complete_task(request: HttpRequest, pk, is_completed) -> HttpResponse:
     task = Task.objects.get(pk=pk)
     if task is not None:
@@ -71,7 +71,7 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
         return reverse("url-tasks")
 
 
-@login_required(login_url="url-login")
+@login_required(login_url="url-signin")
 def delete_task(request: HttpRequest, pk) -> HttpResponse:
     task = Task.objects.get(pk=pk)
     if task is not None:
@@ -79,12 +79,12 @@ def delete_task(request: HttpRequest, pk) -> HttpResponse:
     return redirect("url-tasks")
 
 
-@login_required(login_url="url-login")
+@login_required(login_url="url-signin")
 def confirm_delete_tasks(request: HttpRequest) -> HttpResponse:
     return render(request, "task_list/tasks_confirm_delete.html")
 
 
-@login_required(login_url="url-login")
+@login_required(login_url="url-signin")
 def delete_tasks(request: HttpRequest) -> HttpResponse:
     Task.objects.filter(user=request.user).delete()
     return redirect("url-tasks")

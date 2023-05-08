@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{post.title}}
+{% endblock title %}
+
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'post/css/post-detail.css' %}"> {% endcomment %}
+{% endblock css %}
+
+{% block body %}
+<form>
+    {% csrf_token %}
+    {{form}}
+</form>
+{% endblock body %}
