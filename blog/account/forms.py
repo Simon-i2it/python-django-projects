@@ -14,6 +14,7 @@ class AccountCreationForm(UserCreationForm):
             "first_name",
             "last_name",
             "email",
+            "image",
             "username",
             "password1",
             "password2",

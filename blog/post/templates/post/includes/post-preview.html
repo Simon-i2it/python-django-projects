@@ -3,10 +3,10 @@
 <li>
     <article class="post">
         <a href="{% url "url-post" post.pk %}">
-            <img src="{% static "post/images/"|add:post.image %}" alt={{post.title}}/>
+            <img src="{{ post.image.url }}" alt={{post.title}}/>
             <div class="post__content">
                 <h3>{{post.title}}</h3>
-                <p>{{post.summary}}</p>
+                <p>{{post.description}}</p>
             </div>
         </a>
     </article>

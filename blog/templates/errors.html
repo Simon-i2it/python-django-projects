@@ -1,8 +1,10 @@
 {% if errors %}
     <ul>
-        <div>
-            {% for error in errors %}
-                {{ error }}
+        <div style="margin-top:1rem;">
+            {% for field, error_list in errors.items %}
+                {% for error in error_list %}
+                    <li>{{ field }} - {{ error }}</li>
+                {% endfor %}
             {% endfor %}
         </div>
     </ul>

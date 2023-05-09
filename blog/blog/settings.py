@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "account",
     "post",
+    "account",
+    "ckeditor",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+CKEDITOR_UPLOAD_PATH = "ckeditor/uploads/"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
