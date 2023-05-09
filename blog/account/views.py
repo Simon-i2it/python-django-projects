@@ -1,3 +1,4 @@
+from django.http import HttpRequest
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -7,7 +8,7 @@ from .forms import AccountCreationForm
 # Create your views here.
 
 
-def signup(request):
+def signup(request: HttpRequest):
     form = AccountCreationForm()
 
     if request.method == "POST":
@@ -15,13 +16,19 @@ def signup(request):
 
         if form.is_valid():
             user = form.save(commit=False)
+            image = request.FILES["image"]
+
+            if image is not None:
+                user.image = image
             user.save()
 
             if user is not None:
                 login(request, user)
                 return redirect("url-welcome")
 
-    context = {"form": form, "page": "register", "errors": list(form.errors.values())}
+    errors = {field: errors for field, errors in form.errors.items()}
+    print(errors)
+    context = {"form": form, "page": "register", "errors": errors}
     return render(request, "account/signup.html", context)
 
 

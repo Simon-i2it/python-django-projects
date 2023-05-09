@@ -29,23 +29,22 @@ def new_post(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
             data = request.POST
             author, created = Author.objects.get_or_create(account=request.user)
-
             Post.objects.create(
                 title=data["title"],
-                summary=data["summary"],
+                description=data["description"],
                 content=data["content"],
-                author=author,
                 image=request.FILES["image"],
+                author=author,
             )
-            return redirect(request, "url-welcome")
+            return redirect("url-posts")
         else:
+            errors = {field: error_list for field, error_list in form.errors.items()}
             return render(
                 request,
                 "post/post.html",
-                {"form": form, "errors": list(form.errors.values())},
+                {"form": form, "errors": errors},
             )
 
     return render(request, "post/post.html", {"form": form})

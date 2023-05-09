@@ -5,9 +5,8 @@
 {% endblock title %}
 
 {% block body %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
-
         <div class="flex-center">
             <div class="card" style="width: 30rem;">
                 
@@ -24,6 +23,10 @@
                     
                     <div class="input-group mb-3">
                         <input required name="username" type="text" class="form-control" placeholder="Username">
+                    </div>
+
+                    <div class="mb-3">
+                        <input name="image" class="form-control" type="file" label="Profile Picture">
                     </div>
                     
                     <div class="input-group mb-3">
@@ -49,7 +52,7 @@
                 </div>
                 
             </div>
-        </div>      
+        </div>
     </form>
 
 {% endblock body %}

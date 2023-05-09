@@ -13,7 +13,7 @@
 <section id="summary">
     <h2>{{post.title}}</a></h2>
     <article>
-        <img src="{% static 'post/images/'|add:post.image %}" alt={{post.title}}/>
+        <img src="{{ post.image.url }}" class="rounded" alt={{post.title}}/>
         <address>By <a href="mailto:{{post.author.email}}">{{post.author.first_name}} {{post.author.last_name}}</a></address>
         <div>
             Last updated on <time>{{post.date|date:"D, dS M Y"}}</time>
@@ -21,6 +21,6 @@
     </article>
 </section>
 <main>
-    {{post.content|linebreaks}}
+    {{post.content|safe}}
 </main>
 {% endblock body %}
