@@ -1,15 +1,14 @@
 from datetime import date
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 
 from .forms import PostForm
-from .models import Post
+from .models import Author, Post
 
 
-@login_required(login_url="url-signin")
 def welcome(request: HttpRequest) -> HttpResponse:
     latest_posts = Post.objects.order_by("-date")[:3]
     return render(request, "post/welcome.html", {"posts": latest_posts})
@@ -19,13 +18,34 @@ def posts(request: HttpRequest) -> HttpResponse:
     return render(request, "post/posts.html", {"posts": Post.objects.order_by("-date")})
 
 
-def post(request: HttpRequest, slug) -> HttpResponse:
-    correct_post = get_object_or_404(Post, slug=slug)
+def post(request: HttpRequest, pk: int) -> HttpResponse:
+    correct_post = get_object_or_404(Post, pk=pk)
     return render(request, "post/post-detail.html", {"post": correct_post})
 
 
-class NewPost(LoginRequiredMixin, CreateView):
-    login_url = "url-signin"
-    model = Post
-    form_class = PostForm
-    template_view = "post/post.html"
+@login_required(login_url="url-signin")
+def new_post(request: HttpRequest) -> HttpResponse:
+    form = PostForm()
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            data = request.POST
+            author, created = Author.objects.get_or_create(account=request.user)
+
+            Post.objects.create(
+                title=data["title"],
+                summary=data["summary"],
+                content=data["content"],
+                author=author,
+                image=request.FILES["image"],
+            )
+            return redirect(request, "url-welcome")
+        else:
+            return render(
+                request,
+                "post/post.html",
+                {"form": form, "errors": list(form.errors.values())},
+            )
+
+    return render(request, "post/post.html", {"form": form})
