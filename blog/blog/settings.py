@@ -33,25 +33,17 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "post",
     "account",
+    "ckeditor",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "ckeditor",
-    "ckeditor_uploader",
 ]
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/uploads/"
 
-CKEDITOR_CONFIGS = {
-    "default": {
-        "toolbar": "full",
-        "height": 500,
-        "width": 500,
-    },
-}
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
