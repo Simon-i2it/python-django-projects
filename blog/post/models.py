@@ -12,28 +12,19 @@ class Author(models.Model):
         return f"{self.account.first_name} {self.account.last_name}"
 
 
-class Tag(models.Model):
-    caption = models.CharField(max_length=20)
-
-    def __str__(self) -> str:
-        return self.caption
-
-
 class Post(models.Model):
     title = models.CharField(max_length=100)
     summary = models.CharField(max_length=500)
-    image = models.CharField(max_length=254)
+    image = models.ImageField(blank=True)
     date = models.DateField(auto_now=True)
-    slug = models.SlugField(unique=True, db_index=True)
     content = models.TextField(validators=[MinLengthValidator(100)])
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag)
 
     def __str__(self) -> str:
         return f"[{self.title}] by {self.author.account.first_name} {self.author.account.last_name} on {self.date}"
 
     def get_absolute_url(self):
-        return reverse("url-post", args=[self.slug])
+        return reverse("url-post", args=[self.pk])
 
 
 class Comment(models.Model):

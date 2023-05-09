@@ -10,8 +10,13 @@
 {% endblock css %}
 
 {% block body %}
-<form>
+<form method='post'>
     {% csrf_token %}
     {{form}}
+    <script>
+            CKEDITOR.replace('content');
+    </script>
+    <button type="submit">Create</button>
+    {% include 'errors.html' %}
 </form>
 {% endblock body %}
