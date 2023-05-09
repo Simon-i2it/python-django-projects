@@ -1,12 +1,12 @@
 from datetime import date
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 
 from .forms import PostForm
-from .models import Post
+from .models import Author, Post
 
 
 def welcome(request: HttpRequest) -> HttpResponse:
@@ -28,25 +28,24 @@ def new_post(request: HttpRequest) -> HttpResponse:
     form = PostForm()
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
-        # if form.is_valid():
-        # post = form.save(commit=False)
-        data = request.POST
-        for image in request.FILES.getlist("image"):
-            print(data["title"])
-            print(data["summary"])
-            print(data["content"])
+        if form.is_valid():
+            post = form.save(commit=False)
+            data = request.POST
+            author, created = Author.objects.get_or_create(account=request.user)
+
             Post.objects.create(
                 title=data["title"],
                 summary=data["summary"],
                 content=data["content"],
-                author=request.user,
-                image=image,
+                author=author,
+                image=request.FILES["image"],
             )
-        # else:
-        #     return render(
-        #         request,
-        #         "post/post.html",
-        #         {"form": form, "errors": list(form.errors.values())},
-        #     )
+            return redirect(request, "url-welcome")
+        else:
+            return render(
+                request,
+                "post/post.html",
+                {"form": form, "errors": list(form.errors.values())},
+            )
 
     return render(request, "post/post.html", {"form": form})
