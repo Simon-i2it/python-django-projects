@@ -27,7 +27,6 @@ def signup(request: HttpRequest):
                 return redirect("url-welcome")
 
     errors = {field: errors for field, errors in form.errors.items()}
-    print(errors)
     context = {"form": form, "page": "register", "errors": errors}
     return render(request, "account/signup.html", context)
 

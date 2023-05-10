@@ -25,10 +25,6 @@
                         <input required name="username" type="text" class="form-control" placeholder="Username">
                     </div>
 
-                    <div class="mb-3">
-                        <input name="image" class="form-control" type="file" label="Profile Picture">
-                    </div>
-                    
                     <div class="input-group mb-3">
                         <input required name="email" type="text" class="form-control" placeholder="Email address">
                     </div>
@@ -37,13 +33,28 @@
                         <input required name="password1" type="password" class="form-control" placeholder="Password">
                         <input required name="password2" type="password" class="form-control" placeholder="Confirm Password">
                     </div>
+                    
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Profile Picture
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <input name="image" class="form-control" type="file" label="Profile Picture">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    {% include "errors.html" %}
+                    {% include "includes/errors.html" %}
                     
                     <div class="input-group mb-3 d-flex justify-content-center">
                         <button class="btn btn-success" type="submit" style="width: 10rem; margin-top: 1rem;">SignUp</button>
                     </div>
-                    
+
                 </div>
 
                 <div class="card-footer text-center">
