@@ -13,7 +13,7 @@
         <div class="card" style="width: 80%;">
             
             <div class="card-header">
-                <b>&nbsp📝&nbspNew Post</b>
+                <b>&nbsp✍️&nbspNew Post</b>
             </div>
 
             <div class="card-body">
@@ -30,10 +30,10 @@
                     <input name="image" class="form-control" type="file" label="Select Image">
                 </div>
             
-                {% include "ckeditor.html" with name='content' %}
+                {% include "includes/ckeditor.html" with name='content' %}
                 
                 <div class="mb-3">
-                    {% include "errors.html" %}
+                    {% include "includes/errors.html" %}
                 </div>
                 
                 <div class="input-group mb-3 d-flex justify-content-center">

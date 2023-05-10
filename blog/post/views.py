@@ -49,8 +49,8 @@ def new_post(request: HttpRequest) -> HttpResponse:
             errors = {field: error_list for field, error_list in form.errors.items()}
             return render(
                 request,
-                "post/post.html",
+                "post/new_post.html",
                 {"form": form, "errors": errors},
             )
 
-    return render(request, "post/post.html", {"form": form})
+    return render(request, "post/new_post.html", {"form": form})
