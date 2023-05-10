@@ -13,7 +13,11 @@
 <section id="summary">
     <h2>{{post.title}}</a></h2>
     <article>
-        <img src="{{ post.image.url }}" class="rounded" alt={{post.title}}/>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" class="rounded" alt={{post.title}}/>
+        {% else %}
+            <img src="{% static 'images/post.png' %}" class="rounded" alt={{post.title}}/>
+        {% endif %}
         <address>By <a href="mailto:{{post.author.email}}">{{post.author.first_name}} {{post.author.last_name}}</a></address>
         <div>
             Last updated on <time>{{post.date|date:"D, dS M Y"}}</time>

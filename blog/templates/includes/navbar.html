@@ -1,44 +1,78 @@
-<nav class="navbar bg-dark navbar-expand-lg navbar-dark bg-dark">
-    <div class="container justify-content-center" style="margin-bottom: -0.8rem;">
-        <ul class="navbar-nav">
-        <div class="collapse navbar-collapse">
+{% load static %}
 
-            <div class="nav-item text-right" style="font-size:2rem;padding-right: 12rem;">
-                <a class="nav-link active" href="{% url "url-posts" %}">Blogger</a>
-            </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'url-welcome' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Tech Blogger
+          </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'url-welcome' %}">Home</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Post
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'url-posts' %}">Browse</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'url-posts' %}">My Posts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'url-new-post' %}">Create New Post</a></li>
+                {% endif %}
+            </ul>
+          </li>
+          
+          {% if request.user.is_authenticated %}
 
-            <div class="nav-item text-right" style="font-size:1.5rem;padding-right: 2rem;">
-                <a class="nav-link active" href="{% url "url-posts" %}">Posts</a>
-            </div>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Profile
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Update</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'url-signout' %}">SignOut</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item">
+                <figure class="figure">
+                    <a href="{% url "url-posts" %}">
+                        {% if request.user.image %}
+                            <img src="{{request.user.image.url}}" class="rounded" alt="image" style="height:2rem;width:2rem;margin-bottom:-0.5rem;margin-top:0.3rem;">
+                        {% else %}
+                            <img src="{% static 'images/profile.png' %}" class="rounded" alt="image" style="height:2rem;width:2rem;margin-bottom:-0.5rem;margin-top:0.3rem;">
+                        {% endif %}
+                    </a>
+                
+                    {% comment %} <a class="text-right" href="{% url "url-signout" %}">
+                        <figcaption class="figure-caption">SignOut&nbsp</figcaption>
+                    </a> {% endcomment %}
+                </figure>
+            </li>
 
-            {% if request.user.is_authenticated %}
-                <div class="nav-item text-right" style="font-size:1.5rem;padding-right: 2rem;">
-                    <a class="nav-link active" href="{% url "url-new-post" %}">Create</a>
-                </div>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url "url-new-post" %}"></a>
-                </li>
-                <div class="nav-item text-right" style="font-size:1.5rem;padding-right: 2rem;">
-                    <a class="nav-link" href="{% url "url-posts" %}" style="margin-bottom:-1rem;">Welcome</a>
-                    <a class="nav-link active" href="{% url "url-posts" %}">{{request.user}}</a>
-                </div>
-                <li class="nav-item">
-                    <figure class="figure">
-                        <a href="{% url "url-posts" %}">
-                            <img src="{{request.user.image.url}}" class="rounded" alt="image" 
-                                style="height:6rem;width:6rem; margin-bottom:0.5rem;margin-top:1rem;">
-                        </a>
-                        <a class="text-right" href="{% url "url-signout" %}">
-                            <figcaption class="figure-caption">SignOut&nbsp</figcaption>
-                        </a>
-                    </figure>
-                </li>
-            {% else %}
-                <div class="nav-item text-right" style="font-size:2rem;padding-right: 2rem;">
-                    <a class="nav-link active" href="{% url "url-signin" %}">SignIn</a>
-                </div>
-            {% endif %}
+        {% else %}
 
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'url-signup' %}">SignUp</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'url-signin' %}">SignIn</a>
+            </li>
+
+        {% endif %}
+        
+        
         </ul>
+      </div>
     </div>
-</nav>
+  </nav>

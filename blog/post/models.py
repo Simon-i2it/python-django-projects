@@ -16,7 +16,7 @@ class Author(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to="images/post")
+    image = models.ImageField(upload_to="images/post", default="images/post.png")
     date = models.DateField(auto_now=True, blank=True)
     content = RichTextField(validators=[MinLengthValidator(100)])
     author = models.ForeignKey(Author, on_delete=models.CASCADE, blank=True)

@@ -26,18 +26,24 @@ def post(request: HttpRequest, pk: int) -> HttpResponse:
 @login_required(login_url="url-signin")
 def new_post(request: HttpRequest) -> HttpResponse:
     form = PostForm()
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
+
         if form.is_valid():
             data = request.POST
             author, created = Author.objects.get_or_create(account=request.user)
+
+            image = request.FILES.get("image")
+
             Post.objects.create(
                 title=data["title"],
                 description=data["description"],
                 content=data["content"],
-                image=request.FILES["image"],
+                image=image,
                 author=author,
             )
+
             return redirect("url-posts")
         else:
             errors = {field: error_list for field, error_list in form.errors.items()}
