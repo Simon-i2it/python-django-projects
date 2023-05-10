@@ -16,7 +16,7 @@ def signup(request: HttpRequest):
 
         if form.is_valid():
             user = form.save(commit=False)
-            image = request.FILES["image"]
+            image = request.FILES.get("image")
 
             if image is not None:
                 user.image = image
