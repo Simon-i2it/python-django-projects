@@ -11,20 +11,55 @@
 
 {% block body %}
 <section id="post-title">
-    <h2>{{post.title}}</a></h2>
-    <article>
-        {% if post.image %}
-            <img src="{{ post.image.url }}" class="rounded" alt={{post.title}}/>
-        {% else %}
-            <img src="{% static 'images/post.png' %}" class="rounded" alt={{post.title}}/>
-        {% endif %}
-        <address>By <a href="mailto:{{post.author.account.email}}">{{post.author.account.first_name}} {{post.author.account.last_name}}</a></address>
-        <div>
-            Last updated on <time>{{post.date|date:"D, dS M Y"}}</time>
-        </div>
-    </article>
+    <div>
+        <span>
+            <span>
+                <span class="d-flex flex-nowrap align-content-center justify-content-start align-items-center">
+                    <span style="margin-right:1rem;">
+                        <h3 class="text-white fs-2">{{post.title}}</h3>
+                    </span>
+                    <span class="d-flex align-content-center justify-content-start align-items-center gap-3">
+                        <span>
+                            <a href="{% url "url-edit-post" post.pk %}">
+                                <img id="clickable" src="{% static 'images/edit.png' %}" alt="Logo" width="23" height="25">
+                            </a>
+                        </span>
+                        <span>
+                            <a href="{% url "url-delete-post" post.pk %}">
+                                <img id="clickable" src="{% static 'images/delete.png' %}" alt="Logo" width="23" height="25">
+                            </a>
+                        </span>
+                    </span>
+                </span>
+                <span class="d-flex align-items-start mt-1">
+                    <p class="text-white fs-5">{{post.description}}</p>
+                </span>
+            </span>
+        </span>
+
+        <span>
+            <article>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="rounded" alt={{post.title}}/>
+                {% else %}
+                    <img src="{% static 'images/post.png' %}" class="rounded" alt={{post.title}}/>
+                {% endif %}
+                <address>
+                    By <a href="mailto:{{post.author.account.email}}">{{post.author.account.first_name}} {{post.author.account.last_name}}</a>
+                </address>
+                <div>
+                    Last updated on <time>{{post.date|date:"D, dS M Y"}}</time>
+                </div>
+            </article>
+        </span>
+    </div>
+    
 </section>
 <main>
-    {{post.content|safe}}
+    <div style="padding:4rem 4rem;" >
+        <span>
+            {{post.content|safe}}
+        </span>
+    </div>
 </main>
 {% endblock body %}
