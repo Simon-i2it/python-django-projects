@@ -10,8 +10,8 @@ from .models import Author, Post
 
 
 def welcome(request: HttpRequest) -> HttpResponse:
-    latest_posts = Post.objects.order_by("-date")[:3]
-    return render(request, "post/welcome.html", {"posts": latest_posts})
+    posts = Post.objects.order_by("-date")[:3]
+    return render(request, "post/posts.html", {"posts": posts})
 
 
 def posts(request: HttpRequest) -> HttpResponse:
