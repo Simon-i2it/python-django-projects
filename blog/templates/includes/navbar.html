@@ -17,17 +17,7 @@
             </li>
           
             <li class="nav-item dropdown fs-4">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Post
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'url-posts' %}">Browse</a></li>
-                    {% if request.user.is_authenticated %}
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'url-posts' %}">My Posts</a></li>
-                        <li><a class="dropdown-item" href="{% url 'url-new-post' %}">Create New Post</a></li>
-                    {% endif %}
-                </ul>
+                <a class="nav-link active" aria-current="page" href="{% url 'url-posts' %}">Browse</a>
             </li>
           
           {% if request.user.is_authenticated %}
@@ -44,6 +34,9 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Update</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'url-posts' %}">My Posts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'url-new-post' %}">Create New Post</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'url-signout' %}">SignOut</a></li>
                 </ul>
