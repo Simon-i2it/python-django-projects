@@ -1,10 +1,9 @@
-from datetime import date
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import UpdateView
 
 from .forms import PostForm
 from .models import Author, Post
@@ -21,7 +20,7 @@ def posts(request: HttpRequest) -> HttpResponse:
 
 def post(request: HttpRequest, pk: int) -> HttpResponse:
     post = get_object_or_404(Post, pk=pk)
-    return render(request, "post/post-detail.html", {"post": post})
+    return render(request, "post/post.html", {"post": post})
 
 
 class UpdatePost(LoginRequiredMixin, UpdateView):
@@ -61,7 +60,7 @@ def new_post(request: HttpRequest) -> HttpResponse:
 
         if form.is_valid():
             data = request.POST
-            author, created = Author.objects.get_or_create(account=request.user)
+            author = Author.objects.get_or_create(account=request.user)
 
             image = request.FILES.get("image")
 
